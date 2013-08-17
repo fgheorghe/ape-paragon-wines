@@ -1,0 +1,46 @@
+<project name="ParagonWines">
+    <!-- Path configuration, relative to project root -->
+    <!-- Library path -->
+    <property name="lib.dir" value="lib/" />
+    <!-- Source code path -->
+    <property name="src.dir" value="./" />
+    <!-- Output paths -->
+    <property name="build.dir" value="../out/" />
+    <property name="build.prod.dir" value="../out/prod" />
+    <property name="build.jar.dir" value="../out/jar" />
+
+    <!-- Class configuration -->
+    <path id="classpath">
+        <pathelement location="${lib.dir}" />
+        <fileset dir="${lib.dir}" includes="*.jar" />
+    </path>
+
+    <target name="prepare">
+        <!-- Directory build definition -->
+        <mkdir dir="${build.dir}" />
+        <mkdir dir="${build.prod.dir}" />
+        <mkdir dir="${build.jar.dir}" />
+    </target>
+
+    <target name="compile" depends="prepare">
+        <!-- Class build definition -->
+        <!-- NOTE: includeantruntime fixes a build warning -->
+        <javac includeantruntime="false"
+               srcdir="${src.dir}"
+               destdir="${build.prod.dir}" classpathref="classpath" />
+    </target>
+
+    <target name="jar" depends="compile">
+        <!-- Jar build definition -->
+        <jar destfile="${build.jar.dir}/Paragon.jar" basedir="${build.prod.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="com.paragon.OrderSystem"  />
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="jar">
+        <!-- Execute the application -->
+        <java jar="${build.jar.dir}/Paragon.jar" fork="true"/>
+    </target>
+</project>

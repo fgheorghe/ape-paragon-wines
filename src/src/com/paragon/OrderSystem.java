@@ -48,4 +48,9 @@ public class OrderSystem implements OrderService {
         OrderLedger.getInstance().placeOrder(completeOrder);
     }
 
+    public static void main(String[] args) {
+        // TODO: Extend code.
+        System.out.println( "Hello world." );
+    }
+
 }
