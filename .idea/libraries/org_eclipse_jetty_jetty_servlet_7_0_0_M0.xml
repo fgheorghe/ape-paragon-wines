@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="org.eclipse.jetty:jetty-servlet:7.0.0.M0" type="repository">
+    <properties maven-id="org.eclipse.jetty:jetty-servlet:7.0.0.M0" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/lib/jetty-servlet-7.0.0.M0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lib/jetty-security-7.0.0.M0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lib/jetty-server-7.0.0.M0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lib/servlet-api-2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lib/jetty-continuation-7.0.0.M0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lib/jetty-http-7.0.0.M0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lib/jetty-io-7.0.0.M0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lib/jetty-util-7.0.0.M0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

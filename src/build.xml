@@ -15,7 +15,12 @@
         <fileset dir="${lib.dir}" includes="*.jar" />
     </path>
 
-    <target name="prepare">
+    <target name="clean">
+        <!-- Remove output directory -->
+        <delete dir="${build.dir}" />
+    </target>
+
+    <target name="prepare" depends="clean">
         <!-- Directory build definition -->
         <mkdir dir="${build.dir}" />
         <mkdir dir="${build.prod.dir}" />
@@ -34,7 +39,7 @@
         <!-- Jar build definition -->
         <jar destfile="${build.jar.dir}/Paragon.jar" basedir="${build.prod.dir}">
             <manifest>
-                <attribute name="Main-Class" value="com.paragon.OrderSystem"  />
+                <attribute name="Main-Class" value="com.paragon.ExampleClient"  />
             </manifest>
         </jar>
     </target>
