@@ -2,13 +2,13 @@
   <library name="org.eclipse.jetty:jetty-ajp:8.1.8.v20121106" type="repository">
     <properties maven-id="org.eclipse.jetty:jetty-ajp:8.1.8.v20121106" />
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/src/lib/jetty-ajp-8.1.8.v20121106.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/lib/jetty-server-8.1.8.v20121106.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/lib/javax.servlet-3.0.0.v201112011016.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/lib/jetty-continuation-8.1.8.v20121106.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/lib/jetty-http-8.1.8.v20121106.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/lib/jetty-io-8.1.8.v20121106.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/lib/jetty-util-8.1.8.v20121106.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jetty-ajp-8.1.8.v20121106.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jetty-server-8.1.8.v20121106.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javax.servlet-3.0.0.v201112011016.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jetty-continuation-8.1.8.v20121106.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jetty-http-8.1.8.v20121106.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jetty-io-8.1.8.v20121106.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jetty-util-8.1.8.v20121106.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
