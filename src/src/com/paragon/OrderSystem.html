@@ -1,0 +1,20 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<link href="../../concordion.css" rel="stylesheet" type="text/css" />
+<body>
+
+<h1>Paragon Wines</h1>
+
+<p>
+    Paragon have decided to make a change so that no processing charge is added to the order if it is
+    confirmed with 2 minutes of being offered.
+</p>
+
+<div>
+    <p>
+        When order time is below <b concordion:set="#minutes">2</b> charge is <b concordion:assertEquals="chargeIs(#minutes)">0.0</b>
+    </p>
+
+</div>
+
+</body>
+</html>

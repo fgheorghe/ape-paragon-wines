@@ -8,9 +8,16 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="paragon-externals" level="project" />
-    <orderEntry type="library" name="javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1" level="project" />
-    <orderEntry type="library" name="org.eclipse.jetty:jetty-ajp:8.1.8.v20121106" level="project" />
-    <orderEntry type="library" name="org.eclipse.jetty:jetty-servlet:7.0.0.M0" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$APPLICATION_HOME_DIR$/lib/junit-4.10.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="concordion-1.4.4" level="project" />
   </component>
 </module>
 

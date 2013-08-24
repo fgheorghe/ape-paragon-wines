@@ -2,16 +2,23 @@
     <!-- Path configuration, relative to project root -->
     <!-- Library path -->
     <property name="lib.dir" value="../lib/" />
-
     <!-- Source code path -->
     <property name="src.dir" value="./" />
+    <property name="src.tests.dir" value="./test/" />
+
     <!-- Output paths -->
     <property name="build.dir" value="../out/" />
+    <property name="build.prod.dir" value="${build.dir}/prod/" />
+    <property name="build.jar.dir" value="${build.dir}/jar/" />
+    <property name="build.test.dir" value="${build.dir}/tests/" />
+    <property name="build.acceptance-test.dir" value="${build.dir}/acceptance-tests/" />
+    <property name="build.concordion-output.dir" value="${build.dir}/concordion-output/" />
 
     <!-- Class configuration -->
     <path id="classpath">
-        <pathelement location="${build.dir}" />
+        <pathelement location="${build.prod.dir}" />
         <pathelement location="${lib.dir}" />
+        <pathelement location="${build.test.dir}" />
         <fileset dir="${lib.dir}" includes="*.jar" />
     </path>
 
@@ -23,6 +30,15 @@
     <target name="prepare" depends="clean">
         <!-- Directory build definition -->
         <mkdir dir="${build.dir}" />
+        <mkdir dir="${build.prod.dir}" />
+        <mkdir dir="${build.jar.dir}" />
+        <mkdir dir="${build.jar.dir}" />
+
+        <!-- Create unit tests directory -->
+        <mkdir dir="${build.test.dir}" />
+        <mkdir dir="${build.acceptance-test.dir}" />
+        <mkdir dir="${build.concordion-output.dir}" />
+        <copy file="${src.dir}/src/com/paragon/OrderSystem.html" tofile="${build.prod.dir}/src/com/paragon/OrderSystem.html"/>
     </target>
 
     <target name="compile" depends="prepare">
@@ -30,12 +46,12 @@
         <!-- NOTE: includeantruntime fixes a build warning -->
         <javac includeantruntime="false"
                srcdir="${src.dir}"
-               destdir="${build.dir}" classpathref="classpath" />
+               destdir="${build.prod.dir}" classpathref="classpath" />
     </target>
 
     <target name="jar" depends="compile">
         <!-- Jar build definition -->
-        <jar destfile="${build.dir}/Paragon.jar" basedir="${build.dir}">
+        <jar destfile="${build.jar.dir}/Paragon.jar" basedir="${build.prod.dir}">
             <manifest>
                 <attribute name="Main-Class" value="src.com.paragon.ExampleClient"  />
             </manifest>
@@ -43,8 +59,48 @@
         </jar>
     </target>
 
+    <target name="compile-tests">
+        <!-- Compile unit tests -->
+        <javac includeantruntime="false"
+               srcdir="${src.tests.dir}"
+               destdir="${build.test.dir}" classpathref="classpath" />
+    </target>
+
+    <target name="run-unit-tests" depends="compile, compile-tests">
+        <!-- Run unit tests -->
+        <junit printsummary="yes">
+            <classpath refid="classpath" />
+            <formatter type="brief" usefile="false" />
+            <batchtest fork="yes">
+                <fileset dir="${src.dir}" includes="**/*Test.java" />
+            </batchtest>
+        </junit>
+    </target>
+
+
+
+    <target name="run-acceptance-tests" depends="compile">
+        <junit fork="yes" forkmode="once" printsummary="yes" haltonfailure="yes" showoutput="yes">
+            <jvmarg value="-Dconcordion.output.dir=${build.concordion-output.dir}"/>
+
+            <classpath refid="classpath" />
+
+            <formatter type="plain" usefile="false"/>
+
+            <batchtest todir="${build.concordion-output.dir}">
+                <fileset dir="${src.dir}">
+                    <include name="**/*Fixture.java"/>
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+
+    <target name="run-tests" depends="run-unit-tests, run-acceptance-tests" />
+
+
     <target name="run" depends="jar">
         <!-- Execute the application -->
-        <java jar="${build.dir}/Paragon.jar" fork="true" />
+        <java jar="${build.jar.dir}/Paragon.jar" fork="true" />
     </target>
 </project>
