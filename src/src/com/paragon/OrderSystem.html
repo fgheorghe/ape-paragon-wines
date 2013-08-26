@@ -1,20 +1,43 @@
 <html xmlns:concordion="http://www.concordion.org/2007/concordion">
-<link href="../../concordion.css" rel="stylesheet" type="text/css" />
 <body>
 
 <h1>Paragon Wines</h1>
 
-<p>
-    Paragon have decided to make a change so that no processing charge is added to the order if it is
-    confirmed with 2 minutes of being offered.
-</p>
-
-<div>
     <p>
-        When order time is below <b concordion:set="#minutes">2</b> charge is <b concordion:assertEquals="chargeIs(#minutes)">0.0</b>
+        <b style="font-size: 16px;">Search Results</b>
+        <div>Given I searched for a
+            <b concordion:set="#searchString">Cabernet Sauvignon</b>.</div>
+        <div>Then at least one case of "<b concordion:assertEquals="resultString(#searchString)">Red Australia&#160;‐&#160;Clare Valley Wakefield Cabernet Sauvignon 2009</b>" is found.</div>
     </p>
 
-</div>
+    <p>
+        <b style="font-size: 16px;">No processing charge applied, if order is placed below 2 minutes:</b>
+        <div>Given I placed an order for a case of <b concordion:set="#searchString">Cabernet Sauvignon</b>.</div>
+        <div>When <b concordion:set="#upperTimeLimit">2</b> minutes have passed.</div>
+        <p style="display:none;" concordion:set="#lowerTimeLimit">0</p>
+        <div>Then no charge is added. (Charge is: <b concordion:assertEquals="chargeIs(#lowerTimeLimit,#upperTimeLimit,#searchString)">0</b>)</div>
+    </p>
+
+    <p>
+        <b style="font-size: 16px;">5% of value or 10 GBP (whichever is less) processing charge, if order is placed between 2 and 10 minutes:</b>
+        <div>Given I placed an order for a case of <b concordion:set="#searchString">Cabernet Sauvignon</b>.</div>
+        <div>When less than <b concordion:set="#upperTimeLimit">10</b>, but more than <b concordion:set="#lowerTimeLimit">2</b> minutes have passed.</div>
+        <div>Then 5% or 10 GBP charge is added, whichever is less. (Charge is lower or equal to 10 GBP: <b concordion:assertEquals="chargeIsLowerOrEqualToTen(#lowerTimeLimit,#upperTimeLimit,#searchString)">true</b>)</div>
+    </p>
+
+    <p>
+        <b style="font-size: 16px;">20 GBP charge applied, if order is placed between 10 and 20 minutes:</b>
+        <div>Given I placed an order for a case of <b concordion:set="#searchString">Cabernet Sauvignon</b>.</div>
+        <div>When between <b concordion:set="#lowerTimeLimit">10</b> and <b concordion:set="#upperTimeLimit">20</b> minutes have passed.</div>
+        <div>Then charge is <b concordion:assertEquals="chargeIs(#lowerTimeLimit,#upperTimeLimit,#searchString)">20</b> GBP.</div>
+    </p>
+
+    <p>
+        <b style="font-size: 16px;">Offer has expired, if order placed between 20 or more minutes:</b>
+        <div>Given I placed an order for a case of <b concordion:set="#searchString">Cabernet Sauvignon</b>.</div>
+        <div>When more than <b concordion:set="#upperTimeLimit">20</b> minutes have passed.</div>
+        <div>Then the quote has expired <b concordion:assertEquals="quoteExpired(#upperTimeLimit,#searchString)">true</b></div>
+    </p>
 
 </body>
 </html>

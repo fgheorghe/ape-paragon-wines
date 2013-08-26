@@ -18,6 +18,9 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="concordion-1.4.4" level="project" />
+    <orderEntry type="library" name="mockito-all-1.9.5" level="project" />
+    <orderEntry type="library" name="jmock-junit4-2.5.0" level="project" />
+    <orderEntry type="library" name="jmock-2.5.0" level="project" />
   </component>
 </module>
 

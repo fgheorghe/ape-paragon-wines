@@ -1,5 +1,6 @@
 package src.com.paragon;
 
+import com.paragon.orders.OrderLedger;
 import src.com.paragon.OrderSystem;
 import java.math.BigDecimal;
 import java.util.*;
@@ -15,7 +16,7 @@ import com.paragon.stock.Offer;
 public class ExampleClient {
     public static void main(String[] args) throws Exception{
 
-        OrderSystem orderSystem = new OrderSystem();
+        OrderSystem orderSystem = new OrderSystem( new Util(), OrderLedger.getInstance() );
         String userAuthToken = "fgheorghe@grosan.co.uk";
 
         List<Offer> searchResults = orderSystem.searchForProduct( "Cabernet Sauvignon" );

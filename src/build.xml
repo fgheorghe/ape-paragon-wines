@@ -80,7 +80,12 @@
 
 
     <target name="run-acceptance-tests" depends="compile">
-        <junit fork="yes" forkmode="once" printsummary="yes" haltonfailure="yes" showoutput="yes">
+        <!-- Run tests and out to concordion output folder -->
+        <junit fork="yes"
+               forkmode="once"
+               printsummary="yes"
+               haltonfailure="yes"
+               showoutput="yes">
             <jvmarg value="-Dconcordion.output.dir=${build.concordion-output.dir}"/>
 
             <classpath refid="classpath" />
